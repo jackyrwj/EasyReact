@@ -87,7 +87,7 @@ const App = () => {
   */
   const [type, setType] = useState('hot')
   const handleTabChange = (type) => {
-    // console.log(type)
+// console.log(type)
     setType(type)
     if(type === 'hot'){
       setcommonList(_.orderBy(commonList,'like','desc'));
@@ -107,13 +107,18 @@ const App = () => {
           </li>
           <li className="nav-sort">
             {/* 高亮类名： active */}
-            {tabs.map(item => 
-            <span 
-              key={item.type} 
-              onClick={() => handleTabChange(item.type)} 
-              className={`nav-item ${item.type == type && 'active'}`}>
-              {item.text}
-            </span>)}
+            {/* <span className='nav-item '>最新</span>
+            <span className='nav-item'>最热</span> */}
+            {
+              tabs.map(item => 
+                <span 
+                  key={item.type} 
+                  className={`nav-item ${  item.type === type && 'active'}`}
+                  onClick={() => handleTabChange(item.type)}>
+                  {item.text}
+                </span>
+                )
+            }
           </li>
         </ul>
       </div>
@@ -144,7 +149,7 @@ const App = () => {
         <div className="reply-list">
           {/* 评论项 */}
           {commonList.map(item=>(
-            <div className="reply-item">
+            <div key={item.rpid} className="reply-item">
               {/* 头像 */}
               <div className="root-reply-avatar">
                 <div className="bili-avatar">
